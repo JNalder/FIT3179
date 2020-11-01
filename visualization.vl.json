@@ -12,7 +12,7 @@
       "lookup": "properties.NAME",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/JNalder/FIT3179/main/2019.csv"
+          "url": "https://raw.githubusercontent.com/JNalder/FIT3179/main/Airplane_Crashes_and_Fatalities_Since_1908.csv"
         },
         "key": "Country_or_region",
         "fields": ["Score", "Rank"]
