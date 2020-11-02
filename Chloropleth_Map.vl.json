@@ -55,22 +55,10 @@
           {"field": "Score", "type": "quantitative", "format": ","},
           {"field": "GDP_Per_Capita", "type": "quantitative", "format": ","},
           {"field": "Social_Support", "type": "quantitative", "format": ","},
-          {
-            "field": "Healthy_Life_Expectancy",
-            "type": "quantitative",
-            "format": ","
-          },
-          {
-            "field": "Freedom_To_Make_Life_Choices",
-            "type": "quantitative",
-            "format": ","
-          },
+          {"field": "Healthy_Life_Expectancy", "type": "quantitative", "format": ","},
+          {"field": "Freedom_To_Make_Life_Choices", "type": "quantitative", "format": ","},
           {"field": "Generosity", "type": "quantitative", "format": ","},
-          {
-            "field": "Perceptions_Of_Corruption",
-            "type": "quantitative",
-            "format": ","
-          }
+          {"field": "Perceptions_Of_Corruption", "type": "quantitative", "format": ","}
         ]
       }
     }
