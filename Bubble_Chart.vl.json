@@ -1,0 +1,250 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 500,
+  "height": 600,
+  "title": "HAPPINESS SCORES FOR 2019",
+  "data": {
+    "url": "https://raw.githubusercontent.com/JNalder/FIT3179/main/2019.csv"
+  },
+  "params": [
+    {
+      "name": "Score_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 2.1,
+        "max": 7.7,
+        "step": 0.05,
+        "name": "Minimum Score: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.GDP_Per_Capita > 0"},
+    {"filter": "datum.Score > Score_Above"},
+    {"filter": "datum.Social_Support > 0"},
+    {"calculate": "datum.Rank", "as": "Rank out of 156 Countries"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "GDP_Per_Capita",
+      "type": "quantitative",
+      "title": "GDP",
+      "axis": {"tickCount": 4},
+      "scale": {"type": "linear", "domain": [0, 2]}
+    },
+    "y": {
+      "field": "Social_Support",
+      "type": "quantitative",
+      "title": "Social Support",
+      "axis": {"tickCount": 4},
+      "scale": {"type": "linear", "domain": [0, 2]}
+    }
+  },
+  "layer": [
+    {
+      "selection": {
+        "country_highlight": {"type": "multi", "fields": ["Country"]}
+      },
+      "mark": "circle",
+      "encoding": {
+        "color": {
+          "field": "Rank",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "domain": [125, 100, 50, 10, 1],
+            "range": [
+              "#de2d26",
+              "#fc9272",
+              "#fee0d2",
+              "#f7fcb9",
+              "#addd8e",
+              "#31a354"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "country_highlight", "value": 1},
+          "value": 0.2
+        },
+        "size": {
+          "field": "Score",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [2.5, 4, 5, 6, 7.5],
+            "range": [10, 25, 50, 100, 175, 300]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {
+            "field": "Rank out of 156 Countries",
+            "type": "quantitative",
+            "format": ","
+          },
+          {"field": "Score", "type": "quantitative", "format": ","},
+          {"field": "GDP_Per_Capita", "type": "quantitative", "format": ","},
+          {"field": "Social_Support", "type": "quantitative", "format": ","},
+          {
+            "field": "Healthy_Life_Expectancy",
+            "type": "quantitative",
+            "format": ","
+          },
+          {
+            "field": "Freedom_To_Make_Life_Choices",
+            "type": "quantitative",
+            "format": ","
+          },
+          {"field": "Generosity", "type": "quantitative", "format": ","},
+          {
+            "field": "Perceptions_Of_Corruption",
+            "type": "quantitative",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": " datum['Country'] =='Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'China' ||datum['Country'] == 'New Zealand' || datum['Country'] == 'Italy' || datum['Country'] == 'Yemen' || datum['Country'] == 'United States'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {
+            "field": "Rank out of 156 Countries",
+            "type": "quantitative",
+            "format": ","
+          },
+          {"field": "Score", "type": "quantitative", "format": ","},
+          {"field": "GDP_Per_Capita", "type": "quantitative", "format": ","},
+          {"field": "Social_Support", "type": "quantitative", "format": ","},
+          {
+            "field": "Healthy_Life_Expectancy",
+            "type": "quantitative",
+            "format": ","
+          },
+          {
+            "field": "Freedom_To_Make_Life_Choices",
+            "type": "quantitative",
+            "format": ","
+          },
+          {"field": "Generosity", "type": "quantitative", "format": ","},
+          {
+            "field": "Perceptions_Of_Corruption",
+            "type": "quantitative",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 14,
+        "fontStyle": "bold"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "Green"},
+        "opacity": {
+          "condition": {"test": " datum['Rank'] == 1", "value": 1},
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {
+            "field": "Rank out of 156 Countries",
+            "type": "quantitative",
+            "format": ","
+          },
+          {"field": "Score", "type": "quantitative", "format": ","},
+          {"field": "GDP_Per_Capita", "type": "quantitative", "format": ","},
+          {"field": "Social_Support", "type": "quantitative", "format": ","},
+          {
+            "field": "Healthy_Life_Expectancy",
+            "type": "quantitative",
+            "format": ","
+          },
+          {
+            "field": "Freedom_To_Make_Life_Choices",
+            "type": "quantitative",
+            "format": ","
+          },
+          {"field": "Generosity", "type": "quantitative", "format": ","},
+          {
+            "field": "Perceptions_Of_Corruption",
+            "type": "quantitative",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 14,
+        "fontStyle": "bold"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "Red"},
+        "opacity": {
+          "condition": {"test": " datum['Rank'] == 156", "value": 1},
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {
+            "field": "Rank out of 156 Countries",
+            "type": "quantitative",
+            "format": ","
+          },
+          {"field": "Score", "type": "quantitative", "format": ","},
+          {"field": "GDP_Per_Capita", "type": "quantitative", "format": ","},
+          {"field": "Social_Support", "type": "quantitative", "format": ","},
+          {
+            "field": "Healthy_Life_Expectancy",
+            "type": "quantitative",
+            "format": ","
+          },
+          {
+            "field": "Freedom_To_Make_Life_Choices",
+            "type": "quantitative",
+            "format": ","
+          },
+          {"field": "Generosity", "type": "quantitative", "format": ","},
+          {
+            "field": "Perceptions_Of_Corruption",
+            "type": "quantitative",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
