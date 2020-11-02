@@ -80,8 +80,8 @@
     {"filter": "datum.Freedom_To_Make_Life_Choices > Free_Fil"},
     {"calculate": "datum.Rank", "as": "Rank out of 156 Countries"}
   ],
-  "width": 500,
-  "height": 300,
+  "width": 250,
+  "height": 150,
   "mark": "bar",
   "selection": {"country_highlight": {"type": "multi", "fields": ["Country"]}},
   "encoding": {
