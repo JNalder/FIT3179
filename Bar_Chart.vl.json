@@ -1,0 +1,129 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/JNalder/FIT3179/main/2019.csv"
+  },
+  "params": [
+    {
+      "name": "GDP_Fil",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 1.65,
+        "step": 0.05,
+        "name": "Min GDP:"
+      }
+    },
+    {
+      "name": "SS_Fil",
+      "value": 0.375,
+      "bind": {
+        "input": "range",
+        "min": 0.375,
+        "max": 1.6,
+        "step": 0.025,
+        "name": "Min Social Supp:"
+      }
+    },
+    {
+      "name": "LE_Fil",
+      "value": 0.15,
+      "bind": {
+        "input": "range",
+        "min": 0.15,
+        "max": 1.14,
+        "step": 0.025,
+        "name": "Min Life Exp:"
+      }
+    },
+    {
+      "name": "Cor_Fil",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 0.45,
+        "step": 0.05,
+        "name": "Min Corruption: "
+      }
+    },
+    {
+      "name": "Gen_Fil",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 0.5,
+        "step": 0.05,
+        "name": "Min Generosity: "
+      }
+    },
+    {
+      "name": "Free_Fil",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 0.625,
+        "step": 0.025,
+        "name": "Min Freedom: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Social_Support > SS_Fil"},
+    {"filter": "datum.GDP_Per_Capita > GDP_Fil"},
+    {"filter": "datum.Perceptions_Of_Corruption > Cor_Fil"},
+    {"filter": "datum.Healthy_Life_Expectancy > LE_Fil"},
+    {"filter": "datum.Generosity > Gen_Fil"},
+    {"filter": "datum.Freedom_To_Make_Life_Choices > Free_Fil"},
+    {"calculate": "datum.Rank", "as": "Rank out of 156 Countries"}
+  ],
+  "width": 500,
+  "height": 300,
+  "mark": "bar",
+  "selection": {"country_highlight": {"type": "multi", "fields": ["Country"]}},
+  "encoding": {
+    "x": {
+      "field": "Country",
+      "type": "nominal",
+      "axis": {"tickCount": 10, "domainCap": "round"},
+      "scale": {"type": "linear"}
+    },
+    "y": {"field": "Score", "type": "quantitative"},
+    "opacity": {
+      "condition": {"selection": "country_highlight", "value": 1},
+      "value": 0.2
+    },
+    "color": {"type": "nominal", "field": "Country", "title": "Countries"},
+    "tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {
+        "field": "Rank out of 156 Countries",
+        "type": "quantitative",
+        "format": ","
+      },
+      {"field": "Score", "type": "quantitative", "format": ","},
+      {"field": "GDP_Per_Capita", "type": "quantitative", "format": ","},
+      {"field": "Social_Support", "type": "quantitative", "format": ","},
+      {
+        "field": "Healthy_Life_Expectancy",
+        "type": "quantitative",
+        "format": ","
+      },
+      {
+        "field": "Freedom_To_Make_Life_Choices",
+        "type": "quantitative",
+        "format": ","
+      },
+      {"field": "Generosity", "type": "quantitative", "format": ","},
+      {
+        "field": "Perceptions_Of_Corruption",
+        "type": "quantitative",
+        "format": ","
+      }
+    ]
+  },
+  "config": {}
+}
