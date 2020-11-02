@@ -86,7 +86,7 @@
         </div>
         <div class="pure-u-1-3">
           <div class="description description-right">
-            <h2>Stacked Bar Chart</h2>
+            <h2>Filtered Bar Chart</h2>
             <p>me chart</p>
           </div>
         </div>
@@ -125,17 +125,16 @@
    
 <script type="text/javascript">
   var spec = "https://raw.githubusercontent.com/JNalder/FIT3179/main/Bubble_Chart.vl.json";
+  var spec2 = "https://raw.githubusercontent.com/JNalder/FIT3179/main/Chloropleth_Map.vl.json";
+  var spec3 = "https://raw.githubusercontent.com/JNalder/FIT3179/main/Bar_Chart.vl.json";
+  
   vegaEmbed('#vis1', spec, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
- 
-  var spec2 = "https://raw.githubusercontent.com/JNalder/FIT3179/main/Chloropleth_Map.vl.json";
+  
   vegaEmbed('#vis2', spec3, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
-  
-  var spec3 = "https://raw.githubusercontent.com/JNalder/FIT3179/main/Bar_Chart.vl.json"
-
 
   vegaEmbed('#vis3', spec, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
