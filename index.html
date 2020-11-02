@@ -9,9 +9,12 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
+<h1>An Example of Multiple Visualisations</h1>
 
+<h2>This is the first visualisation</h2>
 <div id="BubbleChart"></div>
  
+<h2>This is the second visualisation</h2>
 <div id="Chloropleth"></div>
 
 <script type="text/javascript">
@@ -19,9 +22,7 @@
   vegaEmbed('#BubbleChart', spec).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
-</script>
  
-<script type="text/javascript">
   var spec2 = "https://raw.githubusercontent.com/JNalder/FIT3179/main/Chloropleth_Map.vl.json";
   vegaEmbed('#Chloropleth', spec2).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
